@@ -9,20 +9,39 @@ def player_number():
     inputNumber = int(input("Proszę podaj liczbę:\n"))
     return inputNumber
 
+def game_difficulty_level(gameMode):
+    if gameMode.lower() == "easy":
+        print(gameMode)
+        count = 10
+        return count
+    else:
+        count = 5
+        return count
+
 def play():
     minNumber = int(input("Proszę podaj wartość minimalną szukanej liczby:\n"))
-    maxNumber = int(input("Prosze podaj wartość maksymalną szukajnej liczby:\n"))
+    maxNumber = int(input("Proszę podaj wartość maksymalną szukajnej liczby:\n"))
+    gameMode = input("Wybierz poziom trudności, 'easy' lub 'hard':\n")
+    count = game_difficulty_level(gameMode)
     cpuChoise = cpu_number(minNumber, maxNumber)
     playerChoise = player_number()
+
     while playerChoise != cpuChoise:
+        count -= 1
+        if count == 0:
+            break
+
         if playerChoise > cpuChoise:
-            print("Twoj liczba jest za duża.")
+            print(f"Twoj liczba jest za duża, ilość prób {count}.")
             playerChoise = player_number()
 
         else:
-            print("Twoja liczba jest za mała.")
+            print(f"Twoja liczba jest za mała, ilość prób {count}.")
             playerChoise = player_number()
 
-    print(f"Brawo trafiłeś, komputer wybrał {cpuChoise}.")
+    if count > 0:
+        print(f"Brawo trafiłeś, komputer wybrał {cpuChoise}.")
+    else:
+        print("GAME OVER")
 
 play()
