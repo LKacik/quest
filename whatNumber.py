@@ -42,6 +42,6 @@ def play():
     if count > 0:
         print(f"Brawo trafiłeś, komputer wybrał {cpuChoise}.")
     else:
-        print("GAME OVER")
+        print(f"GAME OVER, komputer wybrał {cpuChoise}.")
 
 play()
